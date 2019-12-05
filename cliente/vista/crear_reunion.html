@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+    <head class="head1"> 
+        <title>www.bazarezalamea.ec</title>
+        <meta charset="utf-8">
+        <meta named="inicio" content="width=device-width,init">
+    </head>
+    <header style="background:  url('Imagenes/lazo.jpg');  background-repeat:no-repeat; background-size: 1900px 300px;">
+            <p id="espaca"></p>
+            <div  id ="logo" style="background:  url('Imagenes/logobazar.png');  background-repeat:no-repeat; background-size: 700px 350px;">
+            <p id="logotipo"></p>         
+            <p id="espaca1">INSUMOS E IMPLEMENTOS PARA CONFECCIÓN DE ROPA</p>
+            </div>  
+        </header>
+<body>
+        <link rel="stylesheet" type="text/css" href="../../config/Estilobazar.css"> 
+        <section class="menu">
+            <p id="espaul"></p>
+        <ul>
+             <li>
+            <p id="sepind"></p>
+            <li><a href="index.html">Pagina principal</a></li>
+            <p id="sepind"></p>
+            <li><a href="crear_reunion.html">Crear Reunion</a></li>
+            <p id="sepind"></p>
+            <li><a href="gestionar_reunion">Gestionar Reuniones</a></li>
+            <p id="sepind"></p>
+            <li><a href="about.asp">Listar Reuniones</a></li>
+            <p id="espaul"></p>
+            <li><a href="gestionar_cuenta">Modificar Cuenta</a></li>
+            <p id="sepind"></p>
+            <li><a href="../../public/vista/inisesion.html">Cerrar Sesion</a></li>
+        </ul>
+       
+    </section>
+    
+<section class="carrusel">
+    <div id="maincr">
+        <form  action="../controladores/crear_reunion.php"  method="POST">
+            <label id="motivo">Motivo: </label> 
+            <input type="text" name="motivo"  placeholder="Cual es el motivo de la reunion ..." />
+            <br>
+            <br>
+            <label id="fecha">Fecha: </label>
+            <input name="fecha"  type="date" onkeypress="18"/>
+            <span id="mensajeFecha"></span>
+            <br>
+            <br>
+            <label id="hora">Hora: </label>
+            <input  name="hora" type="time"   />
+            <span id="mensajehora"></span>
+            <br>
+            <br>
+            <label id="direccion">Direccion: </label>
+            <input  name="direccion" type="text" placeholder="Ingrese su dirección ..."/>
+            <span id="mensajeDireccion"></span>
+            <br>
+            <br>
+            <label id="coordenadas_latitud">Coordenadas de la Ubicacion </label>
+           <div class="mapa">
+                <div id="map"></div>
+                <br>
+                <label>Latitud: </label>
+                <input type="text" id="latitud" />
+                <br><br>
+                <label >Longitud: </label>
+                <input type="text" id="longitud" />
+                <br>
+           </div>
+                  
+            
+            <br>
+            <br>
+            <label id="remitente">Remitente: </label>
+            <input type="text" name="remitente" placeholder="Ingrese su usuario ..."  onkeypress="return Correo(event);"/>
+            <br>
+            <br>
+            <label id="invitados">Invitados: </label>
+            <select name="listasusuarios" id="listasusuarios" >
+                    <option value ="indice0"></option>
+                <option value ="indice">vinicio@gmail.com</option>
+            </select>
+            <input type="button" value="Agregar">
+            <textarea>Usuarios Agregados...</textarea>
+            <br>
+            <br>
+            <label id="observaciones">Observaciones: </label>
+            <input type="text" name="observaciones" placeholder="Ingrese Observaciones ..."  onkeypress="return Correo(event);"/>
+            <br>
+            <div>
+                <input  id="guargar" name="guardar" type="submit" value="Guardar"/>
+                <input  id="borrar" name="borrar" type="reset" value="Borrar"/>
+            </div>
+            
+            <a href="inisesion.html">Iniciar Sesion</a>
+            <br>
+            <br>
+        </form>
+    </div>
+    </section>
+    <section></section>
+    <section></section>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="js/jquery.slides.js"></script>
+    <script type="text/javascript" src="../../config/validaciones.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?callback=initMap"></script>
+    <script type="text/javascript" src="../../config/CarruselZalamea.js"></script>
+    <script type="text/javascript" src="../../config/coordenadas.js"></script>
+</body>
+
+<footer>
+    Edwin Vinicio Veletanga Ordoñez &#8226; Universidad Politecnica Salesiana &#8226; <a href: "mailto:eveletanga@est.ups.edu.ec">eveletanga@est.ups.edu.ec</a> &#8226; <a href="tel:+593-0983154106">0983154106</a><br> &#169 Todos los derechos reservados</br>
+</footer>
+</html>

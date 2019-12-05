@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+    <head class="head1"> 
+        <title>www.bazarezalamea.ec</title>
+        <meta charset="utf-8">
+        <meta named="inicio" content="width=device-width,init">
+    </head>
+    <header style="background:  url('Imagenes/lazo.jpg');  background-repeat:no-repeat; background-size: 1900px 300px;">
+include '../../config/conexionBD.php';
+            <p id="espaca"></p>
+            <div  id ="logo" style="background:  url('Imagenes/logobazar.png');  background-repeat:no-repeat; background-size: 700px 350px;">
+            <p id="logotipo"></p>         
+            <p id="espaca1">INSUMOS E IMPLEMENTOS PARA CONFECCIÓN DE ROPA</p>
+            </div>  
+        </header>
+<body>
+        <link rel="stylesheet" type="text/css" href="../../config/Estilobazar.css"> 
+    <section class="menu">
+            <p id="espaul"></p>
+        <ul>
+             <li>
+                        <div class="dropdown">
+                            <span>Mouse over me</span>
+                            <div class="dropdown-content">
+                             <p>Hello World!</p>
+                            </div>
+                        </div>
+                        </li>
+                        <p id="sepind"></p>
+            <li><a href="index.html">Pagina principal</a></li>
+            <p id="sepind"></p>
+            <li><a href="news.asp">Nuevos</a></li>
+            <p id="sepind"></p>
+            <li><a href="contact.asp">Mision</a></li>
+            <p id="sepind"></p>
+            <li><a href="about.asp">Vision</a></li>
+            <p id="sepind"></p>
+            <li><a href="about.asp">Contacto</a></li>
+            <p id="espaul"></p>
+            <li><a href="inisesion.html">Iniciar Sesion</a></li>
+            <p id="sepind"></p>
+            <li><a href="inisesion.html">Carrito</a></li>
+            <p id="espaul"></p>
+            <h4 id="busquedad">Buscar
+                <input id=caja> </h4>
+        </ul>
+       
+    </section>
+    
+<section class="carrusel">
+    <div class="main">
+        <form  action="crear_usuario.php"  method="POST">
+            <label id="cedula">Cedula: </label> 
+            <input type="text" name="cedula" maxlength="10" placeholder="Ingrese su contraseña ..."  onkeypress="return soloNumeros(event);"  maxlength="10"/>
+            <br>
+            <br>
+            <label for="nombres">Nombre: </label>
+            <input name="custNombres" id="nombres" type="text" placeholder="Ingrese sus dos nombres ..." onkeypress="return soloLetras(event);" onKeyUp="this.value = this.value.toUpperCase();" maxlength="18"/>
+            <span id="mensajeNombre"></span>
+            <br>
+            <br>
+            <label for="apellidos">Apellido: </label>
+            <input name="custApellidos" id="apellidos" type="text" placeholder="Ingrese sus dos apellidos ..." onkeypress="return soloLetras(event);" onKeyUp="this.value = this.value.toUpperCase();" maxlength="18"/>
+            <span id="mensajeApellido"></span>
+            <br>
+            <br>
+            <label for="direccion">Direccion: </label>
+            <input name="custDireccion" id="direccion" type="text" placeholder="Ingrese su dirección ..."/>
+            <span id="mensajeDireccion"></span>
+            <br>
+            <br>
+            <label for="telefono">Telefono: </label>
+            <input name="custTelefono" id="telefono" type="text" placeholder="Ingrese su número telefónico ..." onkeypress="return soloNumeros(event);"   maxlength="10"/>
+            <span id="mensajeTelefono"></span>
+            <br>
+            <br> 
+            <label id="fecha">Fecha nacimiento: </label>
+            <input type="date" name="fecha" placeholder="Ingrese su fecha de nacimiento ... "onkeypress="return Fecha(event);"   maxlength="10" />
+            <br>
+            <br>
+            <label id="correo">Correo: </label>
+            <input type="email" name="correo" placeholder="Ingrese su correo electrónico ..."  onkeypress="return Correo(event);"/>
+            <br>
+            <br>
+            <label id="contrasena">Contraseña: </label>
+            <input type="password" name="contrasena" placeholder="Ingrese su contraseña ..."/>
+            <br>
+            <div>
+                <input  id="guargar" name="guardar" type="submit" value="Guardar"/>
+                <input  id="borrar" name="borrar" type="reset" value="Borrar"/>
+            </div>
+            <div>
+                <?php
+    include '../../config/conexionBD.php';
+    $cedula = isset($_POST["cedula"]) ? trim($_POST["cedula"]) : null;
+    $nombres = isset($_POST["nombre"]) ? mb_strtoupper(trim($_POST["nombre"]), 'UTF-8') : null;
+    $apellidos = isset($_POST["apellido"]) ? mb_strtoupper(trim($_POST["apellido"]), 'UTF-8') : null;
+    $direccion = isset($_POST["direccion"]) ? mb_strtoupper(trim($_POST["direccion"]), 'UTF-8') : null;
+    $telefono = isset($_POST["telefono"]) ? trim($_POST["telefono"]) : null;
+    $correo = isset($_POST["correo"]) ? trim($_POST["correo"]) : null;
+    $fecha_nac = isset($_POST["fecha"]) ? trim($_POST["fecha"]) : null;
+    $contrasena = isset($_POST["contrasena"]) ? trim($_POST["contrasena"]) : null;
+    $rol = "";
+
+    if (isset($_POST["rol2"])) {
+        echo "se presiono el checkbox usuario";
+        $rol = "usua";
+    } else if (isset($_POST["rol3"])) {
+        echo "se presiono el cbox de admin";
+        $rol = "admin";
+    }
+
+    // Recibo los datos de la imagen
+    $nombre_img = $_FILES["imagen"]["name"];
+    $tipo = $_FILES["imagen"]["type"];
+    $tamano = $_FILES["imagen"]["size"];
+
+    //Si existe imagen y tiene un tamaño correcto
+    if (($nombre_img == !NULL) && ($_FILES['imagen']['size'] <= 900000)) {
+        //indicamos los formatos que permitimos subir a nuestro servidor
+        if (($_FILES["imagen"]["type"] == "image/gif")
+            || ($_FILES["imagen"]["type"] == "image/jpeg")
+            || ($_FILES["imagen"]["type"] == "image/jpg")
+            || ($_FILES["imagen"]["type"] == "image/png")
+        ) {
+            // Ruta donde se guardarán las imágenes que subamos
+            $directorio = $_SERVER['DOCUMENT_ROOT'] . '/xampp/Practica04-Mi-Correo-Electronico/imagenes/';
+            // Muevo la imagen desde el directorio temporal a nuestra ruta indicada anteriormente
+            move_uploaded_file($_FILES['imagen']['tmp_name'], $directorio . $nombre_img);
+        } else {
+            //si no cumple con el formato
+            echo "No se puede subir una imagen con ese formato ";
+        }
+    } else {
+        //si existe la variable pero se pasa del tamaño permitido
+        if ($nombre_img == !NULL) echo "La imagen es demasiado grande ";
+    }
+
+
+    $sql = " INSERT INTO usuario VALUES(0,'$cedula','$nombres','$apellidos','$direccion','$telefono',
+    '$correo',MD5('$contrasena'),'$fecha_nac','N',null,null,'$rol','$nombre_img')";
+
+    if ($conn->query($sql) == TRUE) {
+        echo "<p>Se ha creado los datos</p>";
+        header("Location:../vista/login.html");
+    } else {
+        if ($conn->ermo == 1062) {
+            echo "<p class='error'>La perosona con la cedula $cedula ya esta</p>";
+        } else {
+            echo "<p class='error'> Error" . mysqli_error($conn) . "</p>";
+        }
+    }
+
+    $conn->close();
+    echo "<a href='../vista/crear_usuario.html'>Regresar</a>";
+
+
+    ?>
+            </div>
+            <a href="inisesion.html">Iniciar Sesion</a>
+            <br>
+            <br>
+        </form>
+    </div>
+    </section>
+    <section></section>
+    <section></section>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="js/jquery.slides.js"></script>
+    <script type="text/javascript" src="../../config/validaciones.js"></script>
+
+    <script type="text/javascript" src="../../config/CarruselZalamea.js"></script>
+</body>
+
+<footer>
+    Edwin Vinicio Veletanga Ordoñez &#8226; Universidad Politecnica Salesiana &#8226; <a href: "mailto:eveletanga@est.ups.edu.ec">eveletanga@est.ups.edu.ec</a> &#8226; <a href="tel:+593-0983154106">0983154106</a><br> &#169 Todos los derechos reservados</br>
+</footer>
+</html>
